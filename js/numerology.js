@@ -10,28 +10,18 @@
             function getNumerologyVal() {
                 let babyName = document.getElementById("baby-name").value;
                 let nameArr = babyName.trim().toLowerCase().split('');
-                let originalCount=0;
-                        var resultSum=0;
+                let originalCount=0, resultSum=0;
                 for(let i=0;i<nameArr.length;i++){
                     if(nameArr[i].length === 1 && nameArr[i].match(/[a-z]/i)) {
                         originalCount += alphabetMap.get(nameArr[i]);        
                     }                    
                 }
-                resultSum = originalCount;
-
-              while(resultSum>9){
-                    sumOfDigits(resultSum);      
-              }
-                
+                let value = originalCount;
+                while (value) {
+                    resultSum += value % 10;
+                    value = Math.floor(value / 10);
+                }
                 resultSum = resultSum===10 ? 1 : resultSum;
                 document.getElementById("result").innerHTML = "The numerology value for " + babyName + " is " + resultSum;
                 document.getElementById("totalCount").innerHTML = "Total Sum =  " + originalCount;
-            }
-            function sumOfDigits(value){
-            let digitSum=0;
-                  while (value) {
-                    digitSum += value % 10;
-                    value = Math.floor(value / 10);
-                }      
-                        resultSum=digitSum;
             }
