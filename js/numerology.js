@@ -17,11 +17,15 @@
                     }                    
                 }
                 let value = originalCount;
-                while (value) {
-                    resultSum += value % 10;
-                    value = Math.floor(value / 10);
+                resultSum = value;
+                while(resultSum>9) {
+                    value = resultSum;
+                    resultSum = 0;
+                    while (value) {
+                        resultSum += value % 10;
+                        value = Math.floor(value / 10);
+                    }
                 }
-                resultSum = resultSum===10 ? 1 : resultSum;
                 document.getElementById("result").innerHTML = "The numerology value for " + babyName + " is " + resultSum;
                 document.getElementById("totalCount").innerHTML = "Total Sum =  " + originalCount;
             }
